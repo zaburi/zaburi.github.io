@@ -346,13 +346,15 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    min-width: 0;
   }
   .work-card {
     position: relative;
     border-radius: 28px;
     overflow: hidden;
-    min-height: 320px;
     aspect-ratio: 16 / 10;
+    width: 100%;
+    min-width: 0;
     border: 1px solid var(--gray-200);
     background: var(--gray-50);
     transform: translateZ(0);
@@ -364,10 +366,11 @@
   }
   .work-image {
     position: absolute;
-    inset: 18px;
-    width: calc(100% - 36px);
-    height: calc(100% - 36px);
-    object-fit: contain;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   .work-overlay {
     position: absolute; inset: 0;
@@ -932,6 +935,7 @@
     .works { padding-top: 64px; }
     .works-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
     .works-grid { grid-template-columns: 1fr; }
+    .work-card { aspect-ratio: 4 / 3; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
@@ -1000,7 +1004,7 @@
     </div>
     <div class="hero-photo">
       <div class="hero-photo-frame">
-        <img src="assets/My%20porfolio.png" alt="Zaburi Frolian portrait">
+        <img src="assets/my-portfolio.png" alt="Zaburi Frolian portrait" loading="eager" decoding="async">
       </div>
     </div>
   </div>
@@ -1113,7 +1117,7 @@
 
     <div class="works-grid">
       <div class="work-card reveal">
-        <img class="work-image" src="assets/Ayra%20star.png" alt="SpotiUs Project preview" loading="lazy" decoding="async">
+        <img class="work-image" src="assets/ayra-star.png" alt="SpotiUs Project preview" loading="lazy" decoding="async">
         <div class="work-overlay"></div>
         <div class="work-meta">
           <div>
@@ -1137,7 +1141,7 @@
       </div>
 
       <div class="work-card reveal">
-        <img class="work-image" src="assets/Rafikii.png" alt="Rafikii Pay preview" loading="lazy" decoding="async">
+        <img class="work-image" src="assets/rafikii.png" alt="Rafikii Pay preview" loading="lazy" decoding="async">
         <div class="work-overlay"></div>
         <div class="work-meta">
           <div>
@@ -1149,7 +1153,7 @@
       </div>
 
       <div class="work-card reveal">
-        <img class="work-image" src="assets/Dar.png" alt="Bongo App preview" loading="lazy" decoding="async">
+        <img class="work-image" src="assets/dar.png" alt="Bongo App preview" loading="lazy" decoding="async">
         <div class="work-overlay"></div>
         <div class="work-meta">
           <div>
@@ -1680,16 +1684,23 @@
 </footer>
 
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  // Scroll reveal (with fallback)
+  const revealEls = Array.from(document.querySelectorAll('.reveal'));
+  try {
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+  } catch (e) {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
 
   // Mobile menu
   const navToggle = document.querySelector('.nav-toggle');
