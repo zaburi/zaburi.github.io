@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaburi Frolian — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0C0C0B;
+    --white: #FAFAF8;
+    --gray-50: #F5F5F2;
+    --gray-100: #EBEBЕ7;
+    --gray-200: #D9D9D4;
+    --gray-400: #9A9A94;
+    --gray-600: #5C5C58;
+    --green: #1B4332;
+    --green-mid: #2D6A4F;
+    --green-lite: #D8F3DC;
+    --accent: #E8F4EA;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(250,250,248,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: var(--gray-600);
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+  .nav-cta {
+    background: var(--black); color: var(--white) !important;
+    padding: 8px 20px; border-radius: 100px;
+    font-size: 13px !important; font-weight: 500 !important;
+    text-decoration: none; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-mid) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: var(--black);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(45,106,79,0.3) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 72px;
+    align-items: end;
+    grid-template-areas: "content photo";
+  }
+  .hero-content { grid-area: content; max-width: 900px; }
+  .hero-photo {
+    grid-area: photo;
+    justify-self: end;
+    width: min(420px, 38vw);
+    max-width: 460px;
+  }
+  .hero-photo-frame {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    box-shadow:
+      0 28px 80px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(255,255,255,0.06) inset;
+  }
+  .hero-photo-frame::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 100%);
+    pointer-events: none;
+  }
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transform: translateZ(0);
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 14px; border-radius: 100px;
+    color: var(--green-lite);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green-lite);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--green-lite);
+  }
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.25);
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-desc {
+    font-size: 16px; color: rgba(255,255,255,0.55);
+    max-width: 520px; line-height: 1.7;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-stats {
+    display: flex; gap: 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; overflow: hidden;
+    width: fit-content;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+  .stat {
+    padding: 20px 32px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-value {
+    font-family: var(--serif);
+    font-size: 28px; font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-value span { color: var(--green-lite); }
+  .stat-label {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 32px; right: 48px;
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.3); font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASICS ── */
+  section { padding: 120px 48px; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300; letter-spacing: -1.5px;
+    line-height: 1.1; color: var(--black);
+    margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--gray-400); }
+
+  /* ── SELECTED WORKS ── */
+  .works { background: var(--white); padding-top: 96px; }
+  .works-inner { max-width: 1200px; margin: 0 auto; }
+  .works-header {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 56px;
+  }
+  .works-title {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    color: var(--black);
+  }
+  .works-desc {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    padding-top: 10px;
+  }
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .work-card {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    min-height: 320px;
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--gray-200);
+    background: var(--gray-50);
+    transform: translateZ(0);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .work-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(45,106,79,0.35);
+  }
+  .work-image {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .work-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+  }
+  .work-meta {
+    position: absolute;
+    left: 28px; right: 28px; bottom: 22px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    color: rgba(255,255,255,0.92);
+  }
+  .work-kicker {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .work-title {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
+  }
+  .work-year {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--gray-50); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .about-left .section-title { margin-bottom: 32px; }
+  .about-body {
+    font-size: 17px; color: var(--gray-600);
+    line-height: 1.8; margin-bottom: 20px;
+  }
+  .about-body strong { color: var(--black); font-weight: 600; }
+  .experience-list { margin-top: 48px; }
+  .exp-item {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 24px; padding: 20px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .exp-year {
+    font-size: 12px; color: var(--gray-400);
+    font-weight: 500; padding-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .exp-company {
+    font-weight: 600; font-size: 15px;
+    color: var(--black); margin-bottom: 2px;
+  }
+  .exp-role { font-size: 13px; color: var(--gray-600); }
+  .exp-location {
+    font-size: 11px; color: var(--green-mid);
+    font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+  .skills-block { margin-top: 48px; }
+  .skills-block h4 {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray-400); margin-bottom: 16px;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .skill-tag {
+    padding: 6px 14px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    font-size: 13px; color: var(--gray-600);
+    font-weight: 400;
+  }
+
+  /* ── PROJECT CASE STUDIES ── */
+  .projects { background: var(--white); padding-top: 0; }
+
+  .project-block {
+    max-width: 1200px; margin: 0 auto 160px;
+    padding-top: 120px;
+    border-top: 1px solid var(--gray-200);
+  }
+  .project-block:first-child { border-top: none; }
+
+  .project-header {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 80px; align-items: start;
+    margin-bottom: 64px;
+  }
+  .project-num {
+    font-family: var(--serif);
+    font-size: 120px; font-weight: 300;
+    color: var(--gray-200); line-height: 1;
+    letter-spacing: -4px;
+    position: absolute;
+    top: -20px; left: -20px;
+    pointer-events: none;
+  }
+  .project-title-wrap { position: relative; padding-left: 0; }
+  .project-label {
+    display: inline-flex; gap: 8px;
+    margin-bottom: 16px;
+  }
+  .label-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .pill-green { background: var(--green-lite); color: var(--green); }
+  .pill-gray { background: var(--gray-50); color: var(--gray-600);
+    border: 1px solid var(--gray-200); }
+
+  .project-name {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 300; letter-spacing: -2px;
+    line-height: 1.0; color: var(--black);
+    margin-bottom: 16px;
+  }
+  .project-name em { font-style: italic; color: var(--gray-400); }
+  .project-tagline {
+    font-size: 17px; color: var(--gray-600);
+    line-height: 1.6; max-width: 540px;
+  }
+  .project-meta { padding-top: 8px; }
+  .meta-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .meta-item:first-child { border-top: 1px solid var(--gray-200); }
+  .meta-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray-400); margin-bottom: 4px;
+  }
+  .meta-value { font-size: 14px; color: var(--black); font-weight: 500; }
+
+  /* ── RESULTS BANNER ── */
+  .results-banner {
+    background: var(--black);
+    border-radius: 20px;
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 48px 0;
+  }
+  .result-item {
+    padding: 0 32px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .result-item:first-child { padding-left: 0; }
+  .result-item:last-child { border-right: none; }
+  .result-value {
+    font-family: var(--serif);
+    font-size: 36px; font-weight: 700;
+    color: var(--green-lite);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .result-label {
+    font-size: 12px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  /* ── CONTENT SECTIONS ── */
+  .content-section { margin: 64px 0; }
+  .content-section h3 {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green-mid); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .content-section h3::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* ── PROBLEM/SOLUTION GRID ── */
+  .ps-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; border-radius: 16px; overflow: hidden;
+  }
+  .ps-card {
+    padding: 36px; background: var(--gray-50);
+  }
+  .ps-card.solution { background: var(--accent); }
+  .ps-card-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gray-400); margin-bottom: 12px;
+  }
+  .ps-card.solution .ps-card-label { color: var(--green-mid); }
+  .ps-card-text {
+    font-size: 15px; color: var(--gray-600);
+    line-height: 1.7;
+  }
+  .ps-card.solution .ps-card-text { color: var(--green); }
+
+  /* ── FEATURE GRID ── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    padding: 28px;
+    background: var(--gray-50);
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .feature-card:hover {
+    border-color: var(--green-mid);
+    transform: translateY(-2px);
+  }
+  .feature-icon {
+    font-size: 24px; margin-bottom: 12px;
+  }
+  .feature-title {
+    font-weight: 600; font-size: 14px;
+    color: var(--black); margin-bottom: 6px;
+  }
+  .feature-desc {
+    font-size: 13px; color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* ── SCREEN SHOWCASE ── */
+  .screens-showcase {
+    background: var(--gray-50);
+    border-radius: 20px;
+    padding: 48px;
+    margin: 48px 0;
+  }
+  .screens-showcase h4 {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray-400); margin-bottom: 24px;
+  }
+  .screen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .screen-item {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .screen-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+  .screen-label {
+    padding: 10px 14px;
+    font-size: 11px; font-weight: 600;
+    color: var(--gray-600);
+    border-top: 1px solid var(--gray-200);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── DECISION CALLOUTS ── */
+  .decision-block {
+    border-left: 3px solid var(--green-mid);
+    padding: 24px 32px;
+    background: var(--accent);
+    border-radius: 0 12px 12px 0;
+    margin: 24px 0;
+  }
+  .decision-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green-mid); margin-bottom: 8px;
+  }
+  .decision-text {
+    font-size: 15px; color: var(--green);
+    line-height: 1.7; font-style: italic;
+  }
+
+  /* ── BEFORE/AFTER ── */
+  .ba-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin: 32px 0;
+  }
+  .ba-card {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+  .ba-label {
+    padding: 12px 20px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .ba-before .ba-label { background: #FEF3C7; color: #92400E; }
+  .ba-after .ba-label { background: var(--green-lite); color: var(--green); }
+  .ba-content {
+    padding: 24px; background: var(--gray-50);
+    min-height: 180px;
+  }
+  .ba-point {
+    display: flex; gap: 10px; align-items: flex-start;
+    margin-bottom: 12px; font-size: 14px; color: var(--gray-600);
+    line-height: 1.5;
+  }
+  .ba-point::before {
+    content: attr(data-icon);
+    font-size: 12px; margin-top: 2px; flex-shrink: 0;
+  }
+
+  /* ── PROCESS TIMELINE ── */
+  .process-timeline {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin: 32px 0; position: relative;
+  }
+  .process-step {
+    padding: 0 24px;
+    border-right: 1px solid var(--gray-200);
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step:first-child { padding-left: 0; }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 40px; font-weight: 300;
+    color: var(--gray-200); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .step-title {
+    font-weight: 600; font-size: 14px;
+    color: var(--black); margin-bottom: 6px;
+  }
+  .step-desc { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    text-align: center; padding: 80px 48px;
+    max-width: 800px; margin: 0 auto;
+  }
+  .quote-mark {
+    font-family: var(--serif);
+    font-size: 80px; color: var(--gray-200);
+    line-height: 0.5; margin-bottom: 24px;
+  }
+  .quote-text {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 300; font-style: italic;
+    color: var(--black); line-height: 1.4;
+    letter-spacing: -0.5px;
+  }
+  .quote-author {
+    font-size: 13px; color: var(--gray-400);
+    margin-top: 24px; font-weight: 500;
+  }
+
+  /* ── WHY HIRE ── */
+  .why-section {
+    background: var(--black);
+    color: var(--white);
+  }
+  .why-section .section-title { color: var(--white); }
+  .why-section .section-title em { color: rgba(255,255,255,0.25); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px; margin-top: 64px;
+    border-radius: 20px; overflow: hidden;
+  }
+  .why-card {
+    padding: 48px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.07); }
+  .why-icon {
+    font-size: 32px; margin-bottom: 20px;
+    display: block;
+  }
+  .why-title {
+    font-family: var(--serif);
+    font-size: 22px; font-weight: 300;
+    color: var(--white); margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .why-body {
+    font-size: 14px; color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+  .why-body strong { color: rgba(255,255,255,0.8); }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--gray-50);
+    text-align: center;
+  }
+  .contact-inner { max-width: 680px; margin: 0 auto; }
+  .contact .section-title { margin-bottom: 16px; }
+  .contact-sub {
+    font-size: 17px; color: var(--gray-600);
+    line-height: 1.7; margin-bottom: 48px;
+  }
+  .contact-links {
+    display: flex; gap: 16px;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .link-primary {
+    background: var(--black); color: var(--white);
+  }
+  .link-primary:hover { background: var(--green-mid); }
+  .link-secondary {
+    background: var(--white); color: var(--black);
+    border: 1px solid var(--gray-200);
+  }
+  .link-secondary:hover { border-color: var(--black); }
+  .availability-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-lite); color: var(--green);
+    padding: 8px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .availability-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green-mid);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--gray-200);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--gray-400);
+  }
+  .footer-logo {
+    font-family: var(--serif); font-size: 16px;
+    font-weight: 700; color: var(--black);
+    text-decoration: none;
+  }
+
+  /* ── INLINE QUOTE ── */
+  .inline-quote {
+    font-family: var(--serif);
+    font-size: 20px; font-style: italic;
+    color: var(--gray-600); font-weight: 300;
+    padding: 32px 0; line-height: 1.5;
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    margin: 40px 0;
+  }
+
+  /* ── RAFIKII DASHBOARD PREVIEW ── */
+  .dashboard-preview {
+    background: var(--black);
+    border-radius: 20px;
+    padding: 32px;
+    margin: 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .dashboard-preview::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(45,106,79,0.2) 0%, transparent 60%);
+  }
+  .dashboard-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 20px;
+    position: relative;
+  }
+  .dashboard-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; position: relative;
+  }
+  .dash-stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px;
+  }
+  .dash-stat-label {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    margin-bottom: 8px; letter-spacing: 0.04em;
+  }
+  .dash-stat-value {
+    font-family: var(--serif);
+    font-size: 24px; color: var(--white);
+    font-weight: 700; line-height: 1;
+  }
+  .dash-stat-delta {
+    font-size: 11px; color: #4ADE80;
+    margin-top: 4px;
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .hero { padding: 0 24px 64px; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: start;
+      grid-template-areas:
+        "photo"
+        "content";
+    }
+    .hero-photo { justify-self: start; width: min(380px, 86vw); }
+    .hero-stats { flex-direction: column; border-radius: 12px; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .about-grid, .project-header { grid-template-columns: 1fr; gap: 40px; }
+    .results-banner, .dashboard-stats { grid-template-columns: repeat(2, 1fr); }
+    .feature-grid { grid-template-columns: 1fr; }
+    .process-timeline { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .ps-grid { grid-template-columns: 1fr; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .works { padding-top: 64px; }
+    .works-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+    .works-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-logo">Zaburi Frolian</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#rafikii">Rafikii</a></li>
+    <li><a href="#otapp">Otapp</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Product Designer · Dar es Salaam, Tanzania</div>
+      <h1 class="hero-title">I design products<br>that <em>ship</em></h1>
+      <p class="hero-sub">and generate revenue.</p>
+      <p class="hero-desc">
+        Founding designer at Rafikii. Grew a property management platform
+        from zero to $40K MRR. My designs have processed over TZS 1.58 billion
+        in real transactions. Open to remote work and relocation.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value"><span>$40K</span></div>
+          <div class="stat-label">MRR Built</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value"><span>1.58B</span> TZS</div>
+          <div class="stat-label">Transactions Designed For</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value"><span>2K+</span></div>
+          <div class="stat-label">Downloads in Days (Otapp)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value"><span>3</span></div>
+          <div class="stat-label">Live Products Shipped</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-frame">
+        <img src="assets/My%20porfolio.png" alt="Zaburi Frolian portrait">
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <span class="section-tag">About</span>
+      <h2 class="section-title">Forged by<br><em>real products.</em></h2>
+      <p class="about-body">
+        I'm a product designer who builds. Not just mockups — actual products
+        that real people use to pay rent, book flights, buy movie tickets, and
+        manage properties worth millions of shillings.
+      </p>
+      <p class="about-body">
+        I joined <strong>Rafikii as the founding designer</strong> with zero existing
+        design direction, no component library, and a team of 5. Two years later,
+        we're at $40K MRR with 10 employees. Every screen, every flow,
+        every pixel — that was me.
+      </p>
+      <p class="about-body">
+        Before that, I redesigned Otapp — Tanzania's travel super-app — and watched
+        <strong>2,000 new users download it within days of launch.</strong> That's
+        what good design does.
+      </p>
+      <p class="about-body">
+        I also use AI tools to build faster than traditional workflows allow.
+        Cursor, Codex, Claude — I use them like a senior engineer uses shortcuts:
+        not to replace thinking, but to execute faster.
+      </p>
+
+      <div class="skills-block">
+        <h4>Core Skills</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Product Strategy</span>
+          <span class="skill-tag">UX Research</span>
+          <span class="skill-tag">Systems Design</span>
+          <span class="skill-tag">High Fidelity UI</span>
+          <span class="skill-tag">Mobile (iOS & Android)</span>
+          <span class="skill-tag">Web Applications</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">AI-Assisted Building</span>
+          <span class="skill-tag">Fintech UX</span>
+          <span class="skill-tag">PropTech</span>
+          <span class="skill-tag">Design Systems</span>
+          <span class="skill-tag">Dev Handoff</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right reveal">
+      <div class="experience-list">
+        <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:8px;">Experience</h4>
+
+        <div class="exp-item">
+          <div class="exp-year">2023 – Now</div>
+          <div>
+            <div class="exp-company">Rafikii</div>
+            <div class="exp-role">Lead / Founding Product Designer</div>
+            <div class="exp-location">🇹🇿 Tanzania</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-year">2023 – 2024</div>
+          <div>
+            <div class="exp-company">Dot Inc</div>
+            <div class="exp-role">Lead UX Designer</div>
+            <div class="exp-location">🇺🇸 United States</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-year">2022 – 2023</div>
+          <div>
+            <div class="exp-company">Diversity Cyber Council</div>
+            <div class="exp-role">Product Designer · Contract</div>
+            <div class="exp-location">🇺🇸 United States</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-year">Nov 2024 – Jan 2025</div>
+          <div>
+            <div class="exp-company">Otapp</div>
+            <div class="exp-role">Product Designer · Contract (Redesign)</div>
+            <div class="exp-location">🇹🇿 Tanzania</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORKS -->
+<section class="works" id="works">
+  <div class="works-inner">
+    <div class="works-header reveal">
+      <h2 class="works-title">Selected Works.</h2>
+      <p class="works-desc">
+        Each work was carefully picked because it helped solve real problems in a focused way.
+      </p>
+    </div>
+
+    <div class="works-grid">
+      <div class="work-card reveal">
+        <img class="work-image" src="assets/Ayra%20star.png" alt="SpotiUs Project preview" loading="lazy" decoding="async">
+        <div class="work-overlay"></div>
+        <div class="work-meta">
+          <div>
+            <div class="work-kicker">Proposed Feature for Spotify</div>
+            <div class="work-title">SpotiUs Project</div>
+          </div>
+          <div class="work-year">2022</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-image" src="assets/tigo.png" alt="Tigo Tanzania Super App preview" loading="lazy" decoding="async">
+        <div class="work-overlay"></div>
+        <div class="work-meta">
+          <div>
+            <div class="work-kicker">Telecom</div>
+            <div class="work-title">Tigo Tanzania Super App</div>
+          </div>
+          <div class="work-year">2023</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-image" src="assets/Rafikii.png" alt="Rafikii Pay preview" loading="lazy" decoding="async">
+        <div class="work-overlay"></div>
+        <div class="work-meta">
+          <div>
+            <div class="work-kicker">Fintech and Property Management</div>
+            <div class="work-title">Rafikii Pay</div>
+          </div>
+          <div class="work-year">2023</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-image" src="assets/Dar.png" alt="Bongo App preview" loading="lazy" decoding="async">
+        <div class="work-overlay"></div>
+        <div class="work-meta">
+          <div>
+            <div class="work-kicker">Entertainment</div>
+            <div class="work-title">Bongo App</div>
+          </div>
+          <div class="work-year">2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="rafikii">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <!-- PROJECT 1: RAFIKII -->
+    <div class="project-block reveal">
+      <div class="project-header">
+        <div class="project-title-wrap">
+          <div class="project-label">
+            <span class="label-pill pill-green">Founding Designer</span>
+            <span class="label-pill pill-gray">2023 – Present</span>
+          </div>
+          <h2 class="project-name">Rafikii<br><em>Property Management</em></h2>
+          <p class="project-tagline">
+            Built a property management platform from scratch — three interconnected
+            products, one design system, zero prior design. Grew to $40K MRR
+            in under two years.
+          </p>
+        </div>
+        <div class="project-meta">
+          <div class="meta-item">
+            <div class="meta-label">Platform</div>
+            <div class="meta-value">Web App + iOS + Android</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Role</div>
+            <div class="meta-value">Founding Designer (Solo)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Team</div>
+            <div class="meta-value">5 people at start → 10 now</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Market</div>
+            <div class="meta-value">Tanzania, East Africa</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Live at</div>
+            <div class="meta-value"><a href="https://rafikii.io" style="color:var(--green-mid);text-decoration:none;">rafikii.io ↗</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Banner -->
+      <div class="results-banner reveal">
+        <div class="result-item">
+          <div class="result-value">$40K</div>
+          <div class="result-label">Monthly Recurring Revenue</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">1.58B</div>
+          <div class="result-label">TZS Transactions Processed</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">1,499</div>
+          <div class="result-label">Active Platform Users</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">$150K</div>
+          <div class="result-label">Revenue in First 4 Months</div>
+        </div>
+      </div>
+
+      <!-- Context -->
+      <div class="content-section reveal">
+        <h3>Context</h3>
+        <p class="inline-quote">
+          "The first message was a LinkedIn DM from the CEO. No design existed.
+          No system. No direction. Just an idea and a team of engineers waiting."
+        </p>
+        <p style="font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:16px;">
+          Rafikii started as a sister company of Africarriers Group, owned by Mr. Raza.
+          The core problem: property managers in Tanzania were drowning in fragmented
+          invoices, cash payments, and zero visibility into their portfolio performance.
+          Tenants had no digital way to pay rent, top up electricity tokens, or track their lease.
+        </p>
+        <p style="font-size:16px;color:var(--gray-600);line-height:1.8;">
+          I joined as the <strong style="color:var(--black);">founding and only designer</strong>,
+          collaborating with an India-based mobile dev, a backend team, and the CEO directly.
+          My job: figure out what to build, design it, and get it shipped.
+        </p>
+      </div>
+
+      <!-- The Problem -->
+      <div class="content-section reveal">
+        <h3>The Problem Space</h3>
+        <div class="ps-grid">
+          <div class="ps-card">
+            <div class="ps-card-label">🏠 Tenants</div>
+            <div class="ps-card-text">
+              Paying rent meant bank transfers, cash deliveries, or mobile money — each handled
+              differently per landlord. LUKU electricity tokens required going to a physical meter.
+              No single place to see your lease, dues, or maintenance requests.
+            </div>
+          </div>
+          <div class="ps-card solution">
+            <div class="ps-card-label">✅ What We Built</div>
+            <div class="ps-card-text">
+              A mobile app where tenants manage everything: rent, electricity top-up, utility bills,
+              invoice tracking, complaints, and family member access — all in one place,
+              via MoMo or card.
+            </div>
+          </div>
+          <div class="ps-card">
+            <div class="ps-card-label">🏢 Property Managers</div>
+            <div class="ps-card-text">
+              Hundreds of invoices per month, received in broken fragments — cash, M-Pesa,
+              bank. No way to track which tenant paid what. Proforma to final invoice
+              conversion done manually. Zero data on business growth or occupancy trends.
+            </div>
+          </div>
+          <div class="ps-card solution">
+            <div class="ps-card-label">✅ What We Built</div>
+            <div class="ps-card-text">
+              A full property management dashboard: smart invoicing, automated payment reminders,
+              lease management, maintenance tracking, multi-currency support, and a live
+              analytics view of the whole portfolio.
+            </div>
+          </div>
+          <div class="ps-card">
+            <div class="ps-card-label">📊 Business Owners</div>
+            <div class="ps-card-text">
+              No cross-product visibility. Revenue came in from MoMo, cards, and cash
+              with no unified view. Impossible to track operator performance, identify
+              late payers at scale, or make data-driven decisions.
+            </div>
+          </div>
+          <div class="ps-card solution">
+            <div class="ps-card-label">✅ What We Built</div>
+            <div class="ps-card-text">
+              Mission Control — a centralized admin dashboard tracking all payments across
+              both products, broken down by operator (Vodacom, Airtel, TigoPesa),
+              with a full ticketing system for user support.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What I Designed -->
+      <div class="content-section reveal">
+        <h3>What I Designed</h3>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <div class="feature-title">Tenant Mobile App</div>
+            <div class="feature-desc">B2C iOS & Android app. Rent payments, LUKU electricity tokens, MoMo & card integration, invoice tracking, complaints, lease updates, family access.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏢</div>
+            <div class="feature-title">Property Manager Dashboard</div>
+            <div class="feature-desc">Full-featured web app. Lease management, smart invoicing with automated reminders, tenant interactions, maintenance workflows, financial reporting.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎛️</div>
+            <div class="feature-title">Mission Control</div>
+            <div class="feature-desc">Centralized admin system. Real-time payment tracking across both products, MoMo vs card breakdown by operator, disbursement tracking, support ticketing.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <div class="feature-title">Design System</div>
+            <div class="feature-desc">Built Rafikii's first Figma component library — ensuring consistency, accessibility, and scalability as the team grew from 5 to 10 people.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">LUKU Token Integration</div>
+            <div class="feature-desc">Designed the UX for directly topping up electricity meters via the app — replacing the most painful daily task Tanzanian tenants faced.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <div class="feature-title">Analytics & Reporting</div>
+            <div class="feature-desc">Revenue dashboards, occupancy rate tracking, operator breakdowns. Gave property managers visibility they never had before.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Process -->
+      <div class="content-section reveal">
+        <h3>My Process</h3>
+        <div class="process-timeline">
+          <div class="process-step">
+            <div class="step-num">01</div>
+            <div class="step-title">Discovery</div>
+            <div class="step-desc">Interviewed tenants and property managers within the Africarriers ecosystem. Identified the top pain points: fragmented payments, missed deadlines, and zero visibility.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">02</div>
+            <div class="step-title">Scope Definition</div>
+            <div class="step-desc">Collaborated with the CEO and engineers to define 3 products needed: mobile app, management dashboard, and admin system. Prioritised features by impact vs effort.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">03</div>
+            <div class="step-title">Low to High Fidelity</div>
+            <div class="step-desc">Started with low-fi wireframes for all 3 products simultaneously. Rapid feedback loops with the team before investing in high-fidelity screens.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">04</div>
+            <div class="step-title">Build & Iterate</div>
+            <div class="step-desc">Worked directly alongside engineers. Designed the system to be developer-friendly — clear specs, an evolving component library, and fast iteration cycles post-launch.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Design Decision -->
+      <div class="content-section reveal">
+        <h3>Key Design Decisions</h3>
+        <div class="decision-block">
+          <div class="decision-label">💡 Decision: One App, Multiple User Types</div>
+          <div class="decision-text">
+            The hardest call was deciding to build separate products for tenants vs managers,
+            rather than one combined app. A combined app would have been faster to ship,
+            but the mental models were completely different. Tenants think in "pay my rent."
+            Managers think in "collect revenue across 300 units." Trying to serve both
+            in one interface would have failed both. Separate products, shared design system.
+          </div>
+        </div>
+        <div class="decision-block">
+          <div class="decision-label">💡 Decision: MoMo-First Payment Design</div>
+          <div class="decision-text">
+            Tanzania runs on mobile money. We designed the payment flow around MoMo as the
+            primary path — not card. This meant the whole flow: selecting operator (Vodacom,
+            Airtel, TigoPesa), entering phone number, confirming — had to feel as natural
+            as sending a WhatsApp message. Cards were a secondary tab, not the default.
+            This matched how real Tanzanians actually pay.
+          </div>
+        </div>
+        <div class="decision-block">
+          <div class="decision-label">💡 Decision: Mission Control as a Separate Product</div>
+          <div class="decision-text">
+            Originally, admin reporting was going to be a section inside the property
+            manager dashboard. I pushed back. The people who need mission control —
+            investors, business owners, operations leads — have completely different
+            goals than property managers. Mixing them would create complexity for both.
+            A dedicated Mission Control product gave each audience clarity.
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Dashboard Data -->
+      <div class="content-section reveal">
+        <h3>Live Platform Data (March 2026)</h3>
+        <div class="dashboard-preview">
+          <div class="dashboard-label">Mission Control — Real Metrics</div>
+          <div class="dashboard-stats">
+            <div class="dash-stat">
+              <div class="dash-stat-label">Total Users</div>
+              <div class="dash-stat-value">1,499</div>
+              <div class="dash-stat-delta">↑ 3.7% from last month</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">Total Transactions</div>
+              <div class="dash-stat-value">26,503</div>
+              <div class="dash-stat-delta">↑ 6.5% from last month</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">Transaction Volume</div>
+              <div class="dash-stat-value">TZS 1.58B</div>
+              <div class="dash-stat-delta">↑ 6.8% from last month</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">MoMo Avg Monthly</div>
+              <div class="dash-stat-value">106.85M</div>
+              <div class="dash-stat-delta">Vodacom · Airtel · TigoPesa</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--gray-400);text-align:center;">
+          These are real numbers from the live platform I designed — not estimates.
+        </p>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: OTAPP -->
+    <div class="project-block reveal" id="otapp">
+      <div class="project-header">
+        <div class="project-title-wrap">
+          <div class="project-label">
+            <span class="label-pill pill-green">Full Redesign</span>
+            <span class="label-pill pill-gray">Nov 2024 – Jan 2025</span>
+          </div>
+          <h2 class="project-name">Otapp<br><em>Travel Super-App</em></h2>
+          <p class="project-tagline">
+            Redesigned Tanzania's multi-modal travel platform — flights, movies, events,
+            buses, cargo — from a dated 2016-era mobile app into a modern, cinematic
+            multi-platform product. 2,000 new downloads in days of launch.
+          </p>
+        </div>
+        <div class="project-meta">
+          <div class="meta-item">
+            <div class="meta-label">Platform</div>
+            <div class="meta-value">Web + Mobile (iOS & Android)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Role</div>
+            <div class="meta-value">Product Designer · Contract</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Duration</div>
+            <div class="meta-value">3 months (Nov 2024 – Jan 2025)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Scope</div>
+            <div class="meta-value">90+ screens across 6 verticals</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Live at</div>
+            <div class="meta-value"><a href="https://otapp.co.tz" style="color:var(--green-mid);text-decoration:none;">otapp.co.tz ↗</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Banner -->
+      <div class="results-banner reveal">
+        <div class="result-item">
+          <div class="result-value">2,000+</div>
+          <div class="result-label">Downloads in Days of Launch</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">90+</div>
+          <div class="result-label">Screens Designed</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">6</div>
+          <div class="result-label">Product Verticals Covered</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">3mo</div>
+          <div class="result-label">Contract Duration</div>
+        </div>
+      </div>
+
+      <!-- Before / After -->
+      <div class="content-section reveal">
+        <h3>Before vs After</h3>
+        <div class="ba-grid">
+          <div class="ba-card ba-before">
+            <div class="ba-label">Before — Old Otapp</div>
+            <div class="ba-content">
+              <div class="ba-point" data-icon="❌">Dark navy UI with dense icon-heavy navigation — felt like a 2016 utility app</div>
+              <div class="ba-point" data-icon="❌">Tab bar with icons only — no visual context for what each section contained</div>
+              <div class="ba-point" data-icon="❌">"QUICK EASY FAST" tagline — a classic signal of a product that knows it has UX problems</div>
+              <div class="ba-point" data-icon="❌">No information hierarchy — everything competed for attention equally</div>
+              <div class="ba-point" data-icon="❌">Generic aesthetic — looked identical to dozens of other African booking apps</div>
+              <div class="ba-point" data-icon="❌">No web presence — mobile only, limiting reach</div>
+            </div>
+          </div>
+          <div class="ba-card ba-after">
+            <div class="ba-label">After — Redesigned Otapp</div>
+            <div class="ba-content">
+              <div class="ba-point" data-icon="✅">Cinematic full-bleed heroes for Movies (Gladiator II, Black Widow) — entertainment-grade visual language</div>
+              <div class="ba-point" data-icon="✅">Horizontal pill navigation — scannable, modern, works identically on web and mobile</div>
+              <div class="ba-point" data-icon="✅">Clear visual hierarchy per vertical — Flights clean and functional, Movies cinematic, Events editorial</div>
+              <div class="ba-point" data-icon="✅">Interactive seat selection with real-time status (available/selected/booked/blocked)</div>
+              <div class="ba-point" data-icon="✅">Full web platform — landing pages, partner portal, B2B section</div>
+              <div class="ba-point" data-icon="✅">Complete multi-step booking flows with progress indicators and contextual modals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What was Redesigned -->
+      <div class="content-section reveal">
+        <h3>Scope of Work — 6 Verticals, 90+ Screens</h3>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">✈️</div>
+            <div class="feature-title">Flights</div>
+            <div class="feature-desc">Full booking flow: search with one-way/return/multi-city, airport autocomplete, passenger class selector, flight results, passenger info form, confirm & pay. Both web and mobile.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎬</div>
+            <div class="feature-title">Movies</div>
+            <div class="feature-desc">Cinematic hero with trailer CTA, filter system (time/genre/format/location), movie detail page, showtime + location selector, 2D/3D format picker, seat map with status legend, ticket quantity modal.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎪</div>
+            <div class="feature-title">Events</div>
+            <div class="feature-desc">Full-bleed hero carousel, category filters (Gospel, Music, Fashion, Others), event cards with date/time/price/location, booking flow consistent with other verticals.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚌</div>
+            <div class="feature-title">Buses & Cargo</div>
+            <div class="feature-desc">Consistent booking patterns adapted to bus routing and cargo tracking contexts. Same design system, different use cases.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <div class="feature-title">Web Platform</div>
+            <div class="feature-desc">Full marketing site redesign: hero sections, partner portal ("Your Gateway to Effortless Booking"), B2B features, testimonials, solutions grid, contact form.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔗</div>
+            <div class="feature-title">Navigation System</div>
+            <div class="feature-desc">Designed a unified navigation architecture that works identically across web and mobile — the same pill nav (Home · Flights · Buses · Events · Movies · Cargo) adapts to both contexts.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Design Decisions -->
+      <div class="content-section reveal">
+        <h3>Key Design Decisions</h3>
+        <div class="decision-block">
+          <div class="decision-label">💡 Decision: Different Visual Language Per Vertical</div>
+          <div class="decision-text">
+            The biggest challenge: Flights and Movies are completely different emotional contexts.
+            Booking a flight is transactional — people want clarity, trust, and speed.
+            Booking a movie is about excitement and entertainment. I gave each vertical its own
+            visual energy while keeping the underlying navigation and booking flow consistent.
+            Flights: clean white, functional. Movies: dark cinematic, full-bleed poster art.
+            Events: editorial, editorial bold. Same design system. Different personalities.
+          </div>
+        </div>
+        <div class="decision-block">
+          <div class="decision-label">💡 Decision: Unified Navigation Across Web & Mobile</div>
+          <div class="decision-text">
+            Otapp needed to work as a web platform AND a mobile app. Most designers would
+            design these separately. I designed one navigation system — the horizontal pill nav —
+            that adapts to both. Same labels, same order, same logic. Users who switch between
+            app and web don't have to relearn anything. This was a conscious product decision,
+            not just a visual one.
+          </div>
+        </div>
+        <div class="decision-block">
+          <div class="decision-label">💡 Decision: Progressive Disclosure in Booking Flows</div>
+          <div class="decision-text">
+            The old app showed everything at once — overwhelming. The new flows use
+            progressive disclosure: select movie → pick date → choose showtime → select seats
+            (or format first via modal) → confirm. Each step is one clear decision.
+            Contextual modals handle sub-choices (format: 2D/3D, number of seats)
+            without losing your place in the flow.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY HIRE ME -->
+<section class="why-section">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-tag" style="color:rgba(255,255,255,0.4);">Why work with me</span>
+    <h2 class="section-title">What you're<br>actually <em>getting.</em></h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-icon">🚀</span>
+        <div class="why-title">I ship real products</div>
+        <div class="why-body">
+          Every project in this portfolio is live, generating revenue, and used by
+          real people. <strong>Rafikii processes TZS 1.58B in real transactions.</strong>
+          Otapp got 2,000 new downloads in days. I don't just make things look good —
+          I make things work.
+        </div>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">⚡</span>
+        <div class="why-title">AI-accelerated delivery</div>
+        <div class="why-body">
+          I use Cursor, Codex, and Claude to build and prototype faster than
+          traditional workflows allow. <strong>What takes a team weeks,
+          I can validate in days.</strong> This isn't cutting corners —
+          it's knowing which tools to use and when.
+        </div>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🌍</span>
+        <div class="why-title">Emerging market expertise</div>
+        <div class="why-body">
+          I understand <strong>MoMo payments, LUKU meters, low-bandwidth contexts,
+          and mobile-first users</strong> in East Africa. This perspective —
+          designing for markets most designers have never touched —
+          is rare and valuable for global products entering these regions.
+        </div>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🎯</span>
+        <div class="why-title">Product thinking, not just pixels</div>
+        <div class="why-body">
+          At Rafikii, I pushed back on building a combined app and argued for
+          separate products per user type. <strong>That decision directly contributed
+          to faster adoption and cleaner UX.</strong> I think in outcomes —
+          revenue, retention, conversion — not just screens.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner reveal">
+    <div class="availability-badge">Available for freelance work</div>
+    <h2 class="section-title">Let's build something<br><em>remarkable.</em></h2>
+    <p class="contact-sub">
+      I'm open to product design contracts, founding designer roles,
+      and long-term remote positions. I work best with founders and
+      small teams who ship fast and care deeply about their users.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:zaburifrolian@gmail.com" class="contact-link link-primary">
+        ✉️ zaburifrolian@gmail.com
+      </a>
+      <a href="https://rafikii.io" target="_blank" class="contact-link link-secondary">
+        🌐 rafikii.io
+      </a>
+      <a href="https://otapp.co.tz" target="_blank" class="contact-link link-secondary">
+        🌐 otapp.co.tz
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Zaburi Frolian</a>
+  <span>Product Designer · Dar es Salaam, Tanzania · Open to Remote & Relocation</span>
+  <span>© 2025</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
